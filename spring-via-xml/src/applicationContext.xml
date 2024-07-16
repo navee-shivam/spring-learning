@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Bean created for dependency service -->
+	<bean id="sedanModel" class="com.xml.dependent.SedanModelType">
+	</bean>
+
+	<bean id="hatchbackModel" class="com.xml.dependent.HatchbackModelType">
+	</bean>
+
+	<bean id="suvModel" class="com.xml.dependent.SuvModelType">
+	</bean>
+
+	<!-- Bean created for injector service -->
+	<bean id="carParts" class="com.xml.impl.Mercedes">
+		<!-- Passing the beanId to constructor -->
+		<constructor-arg ref="suvModel"></constructor-arg>
+	</bean>
+
+	<bean id="setInjection" class="com.xml.impl.Toyata">
+		<!-- name will be any ref must be beanID -->
+		<property name="aaa" ref="hatchbackModel"></property>
+	</bean>
+
+</beans>
